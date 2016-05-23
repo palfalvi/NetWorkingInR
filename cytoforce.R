@@ -13,8 +13,8 @@ CytoForce <- function(nodes,links,cutoff=0.1){
   names(Links) <- c("Source","Target","Value")
   nLinks2 <- length(Links[,1])
   
+  #Calculate connectivities used for node size
 kon <- vector(length=nNodes)
-  
   for (i in 1:nNodes){
     kon[i] <- 0
     kon[i] = sum(Links$Value[Links$Source == c(i-1)]) 
@@ -24,7 +24,7 @@ kon = kon/max(kon)
   
   Nodes = nodes[,c(1,3)]
   Nodes = cbind(Nodes,kon)
-  #Nodes = Nodes[,as.numeric(Nodes[,3]) > 0]
+  
   names(Nodes) <- c("NodeID","Group","Nodesize")
 
   cat("Total number of nodes:",nNodes)
